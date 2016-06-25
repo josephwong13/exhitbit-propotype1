@@ -1,0 +1,1 @@
+angular.module('exhibitApp', ['ui.router','ngResource', 'exhibitRoute', 'exhibitService','exhibitCtrl']);

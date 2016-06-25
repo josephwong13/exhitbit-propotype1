@@ -1,0 +1,14 @@
+<h1>This is the exhibits page</h1>
+<h3>List of exhibits available: <br></h3>
+
+<ul class="media-list" ng-repeat="exhibit in allExhibits">
+    <li class="media">
+        <div class="media-left">
+            <img class="media-object" src="img/placeholder.png" height="42" width="42">
+        </div>
+        <div class="media-body">
+            <h4 class="media-heading">{{exhibit.name}}</h4>
+            <p>{{exhibit.description}}</p>
+        </div>
+    </li>
+</ul>
