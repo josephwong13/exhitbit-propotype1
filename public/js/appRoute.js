@@ -1,45 +1,27 @@
 'use strict';
 
 angular.module('exhibitRoute', ['ui.router','ngResource'])
-.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider) {
+.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
+
+        //$locationProvider.html5Mode({
+        //      enabled: true,
+        //      requireBase: false
+        //    });
 
         $stateProvider
 
             .state('app', {
-                url:'/',
-                views: {
-                    'header': {
-                        templateUrl : 'views/header.html',
-                    },
-                    'content': {
+                url:'/app',
                         templateUrl : 'views/home.html',
-                        controller  : ''
-                    },
-                    'footer': {
-                        templateUrl : 'views/footer.html',
-                    }
-                }
             })
 
             .state('app.exhibits', {
-                url: 'exhibits',
-                views: {
-                    'content@': {
+                url: '/exhibits',
                         templateUrl : 'views/exhibits.html',
                         controller  : 'exhibitController'
-                   }
-                }
-            })
-
-            .state('app.exhibitsDetail', {
-                url: 'exhibits/:id',
-                views: {
-                    'content@': {
-                        templateUrl : 'views/exhibitsDetail.html',
-                        controller  : ''
-                   }
-                }
             });
+
+            $urlRouterProvider.otherwise("/app");
 
     }])
 ;

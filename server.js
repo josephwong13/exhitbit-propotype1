@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
-var routes = require('./app/routes/index');
+//var routes = require('./app/routes/index');
 var users = require('./app/routes/users');
 var exhibits = require('./app/routes/exhibit');
 
@@ -17,8 +17,8 @@ var uristring = process.env.MONGODB_URI ||'mongodb://localhost:27017/exhibitdb';
 mongoose.connect(uristring);
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+//app.set('views', path.join(__dirname, 'views'));
+//app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -26,14 +26,19 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+//app.use(express.static(path.join(__dirname, 'public')));
 
 //app.use('/', routes);
 
 app.use('/users', users);
 app.use('/api', exhibits);
-app.use('*',function(req,res){
-  res.sendFile(path.join(__dirname, 'public/index.html'))
+app.use('/js', express.static(__dirname + '/public/js'));
+app.use('/img', express.static(__dirname + '/public/img'));
+app.use('/css', express.static(__dirname + '/public/css'));
+app.use('/libs', express.static(__dirname + '/public/libs'));
+app.use('/views', express.static(__dirname + '/public/views'));
+app.all('/*', function(req,res){
+  res.sendFile(path.join(__dirname, 'public/index.html'));
 });
 
 // catch 404 and forward to error handler
