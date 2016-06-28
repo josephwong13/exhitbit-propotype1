@@ -7,6 +7,7 @@ angular.module('exhibitCtrl',[])
         console.log('get exhibits successfully');
     })
 
-    $scope.test = "Controller in action";
+    //post method on exhibits
+    
 
 }])

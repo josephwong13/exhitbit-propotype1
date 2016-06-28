@@ -13,7 +13,7 @@ var exhibits = require('./app/routes/exhibit');
 var app = express();
 
 //set up mongodb
-var uristring = process.env.MONGODB_URI ||'mongodb://localhost:27017/exhibitdb';
+var uristring = 'mongodb://heroku_hx9394wr:u88l2m5fiaq65afckma5j9ivla@ds021034.mlab.com:21034/heroku_hx9394wr' ||'mongodb://localhost:27017/exhibitdb';
 mongoose.connect(uristring);
 
 // view engine setup
