@@ -19,9 +19,15 @@ angular.module('exhibitRoute', ['ui.router','ngResource'])
                 url: '/exhibits',
                         templateUrl : 'views/exhibits.html',
                         controller  : 'exhibitController'
+            })
+
+            .state('app.exhibitsDetail',{
+                url: '/exhibits/:id',
+                        templateUrl : 'views/exhibitDetail.html',
+                        controller  : 'exhibitDetailController', 
             });
 
-            $urlRouterProvider.otherwise("/app");
+            $urlRouterProvider.otherwise("/app/exhibits");
 
     }])
 ;

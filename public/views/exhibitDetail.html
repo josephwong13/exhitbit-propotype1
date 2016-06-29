@@ -1,0 +1,24 @@
+<h1>This is the detail page</h1> 
+
+<h3>GET <small>-A single exhibit</small></h3>
+
+<ul class="media-list">
+    <li class="media">
+        <div class="media-left">
+            <img class="media-object" src="img/placeholder.png" height="42" width="42">
+        </div>
+        <div class="media-body">
+            <h4 class="media-heading">{{exhibit.name}}</a></h4>
+            <p>{{exhibit.description}}</p>
+        </div>
+    </li>
+</ul>
+
+<h3>PUT/DELETE <small>-You can modify/delete a single exhibit here</small></h3>
+
+<form ng-submit="putExhibit()">
+    <input type="text" class="form-control" placeholder="Name of exhibit" ng-model="exhibit.name"><br>
+    <input type="text" class="form-control" placeholder="Description of exhibit" ng-model="exhibit.description"><br>
+    <button class="btn btn-warning" type="submit">Update</button>
+    <button class="btn btn-danger" ng-click="deleteExhibit()">Delete</button>
+</form>

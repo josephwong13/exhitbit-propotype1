@@ -1,5 +1,15 @@
 <h1>This is the exhibits page</h1>
-<h3>List of exhibits available: <br></h3>
+
+<h3>POST <small>-Create a new exhibit here</small></h3>
+
+<form ng-submit="postExhibit()">
+    <input type="text" class="form-control" placeholder="Name of exhibit" ng-model="exhibitName"><br>
+    <input type="text" class="form-control" placeholder="Description of exhibit" ng-model="exhibitDescription"><br>
+    <button class="btn btn-primary" type="submit">Submit</button>
+</form>
+
+
+<h3>GET <small>-All exhibits are display here</small></h3>
 
 <ul class="media-list" ng-repeat="exhibit in allExhibits">
     <li class="media">
@@ -7,8 +17,11 @@
             <img class="media-object" src="img/placeholder.png" height="42" width="42">
         </div>
         <div class="media-body">
-            <h4 class="media-heading">{{exhibit.name}}</h4>
+            <h4 class="media-heading"><a ui-sref="app.exhibitsDetail({id: exhibit._id})">{{exhibit.name}}</a></h4>
             <p>{{exhibit.description}}</p>
+        </div>
+        <div class="media-right">
+            <a ng-click="deleteExhibit(exhibit._id)">X</a>
         </div>
     </li>
 </ul>
