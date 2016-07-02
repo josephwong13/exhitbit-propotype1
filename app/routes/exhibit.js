@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var Exhibit = require('../models/exhibit');
+var passport = require('passport');
+var limit = require('../limit');
 
 router.get('/',function(req,res){
     res.json({message:'welcome to the API page!'});
@@ -15,7 +17,7 @@ router.route('/exhibits')
     })
 })
 
-.post(function(req,res,next){
+.post(limit,function(req,res,next){
         var exhibit = new Exhibit(req.body);
         exhibit.save(function(err){
             if(err) return next(err);

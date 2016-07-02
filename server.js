@@ -5,28 +5,36 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var session = require('express-session');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 
 //var routes = require('./app/routes/index');
 var users = require('./app/routes/users');
 var exhibits = require('./app/routes/exhibit');
 
 var app = express();
-
-//set up mongodb
-var uristring = 'mongodb://heroku_hx9394wr:u88l2m5fiaq65afckma5j9ivla@ds021034.mlab.com:21034/heroku_hx9394wr' ||'mongodb://localhost:27017/exhibitdb';
-mongoose.connect(uristring);
-
-// view engine setup
-//app.set('views', path.join(__dirname, 'views'));
-//app.set('view engine', 'jade');
-
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.set('views', __dirname + '/views');
+app.set('view engine', 'jade');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-//app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  secret: '12345678'
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+//set up passport strategy
+var User = require('./app/models/user');
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+//set up mongodb
+var uristring = 'mongodb://heroku_hx9394wr:u88l2m5fiaq65afckma5j9ivla@ds021034.mlab.com:21034/heroku_hx9394wr' ||'mongodb://localhost:27017/exhibitdb';
+mongoose.connect(uristring);
 
 //app.use('/', routes);
 
