@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Exhibit = require('../models/exhibit');
 var passport = require('passport');
-var limit = require('../limit');
+var jwtVerify = require('../jwtVerify');
 
 router.get('/',function(req,res){
     res.json({message:'welcome to the API page!'});
@@ -17,7 +17,7 @@ router.route('/exhibits')
     })
 })
 
-.post(limit,function(req,res,next){
+.post(jwtVerify.verifyUser,function(req,res,next){
         var exhibit = new Exhibit(req.body);
         exhibit.save(function(err){
             if(err) return next(err);
@@ -57,7 +57,7 @@ router.route('/exhibits/:exhibit_id')
     })
 })*/
 
-.put(function(req,res,next){
+.put(jwtVerify.verifyUser,function(req,res,next){
     Exhibit.findByIdAndUpdate(req.params.exhibit_id, req.body, function(err,exhibit){
         if(err)return next(err);
         if(exhibit == null) {
@@ -68,7 +68,7 @@ router.route('/exhibits/:exhibit_id')
     })
 })
 
-.delete(function(req,res,next){
+.delete(jwtVerify.verifyUser,function(req,res,next){
     Exhibit.findByIdAndRemove(req.params.exhibit_id, function(err){
         if(err) return next(err);
         res.json({message:'deleted exhibit'});

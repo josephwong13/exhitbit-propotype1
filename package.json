@@ -19,6 +19,7 @@
     "express-session": "latest",
     "passport" : "latest",
     "passport-local" : "latest",
-    "passport-local-mongoose" : "latest"
+    "passport-local-mongoose" : "latest",
+    "jsonwebtoken" : "latest"
   }
 }

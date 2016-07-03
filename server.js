@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var session = require('express-session');
+//var session = require('express-session');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
@@ -20,11 +20,11 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(session({
-  secret: '12345678'
-}));
+//app.use(session({
+//  secret: '12345678'
+//}));
 app.use(passport.initialize());
-app.use(passport.session());
+//app.use(passport.session());
 
 //set up passport strategy
 var User = require('./app/models/user');
