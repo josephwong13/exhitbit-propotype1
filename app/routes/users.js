@@ -6,7 +6,10 @@ var jwtVerify = require('../jwtVerify');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+    User.find(function(err,user){
+        if(err) return next(err);
+        res.json(user);
+    })
 });
 
 //register
@@ -27,12 +30,7 @@ router.post('/register',function(req,res){
 //login
 
 router.get('/login', function(req,res){
-    if(req.user){
-      res.send('This is the login page, ' + req.user.username);  
-    }
-    else{
-        res.send('This is the login page')
-    }
+        res.send('This is the login page');
 });
 
 router.post('/login', function(req,res){

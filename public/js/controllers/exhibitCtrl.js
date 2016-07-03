@@ -1,6 +1,6 @@
 angular.module('exhibitCtrl',[])
 
-.controller('exhibitController', ['$scope','Exhibit','$state', function($scope,Exhibit,$state){
+.controller('exhibitController', ['$scope','Exhibit','$state','Authentication', function($scope,Exhibit,$state,Authentication){
 
     //get method on exhibits
     $scope.allExhibits = Exhibit.query(function(){
@@ -13,12 +13,16 @@ angular.module('exhibitCtrl',[])
     $scope.postExhibit = function(){
         var newExhibit = new Exhibit();
         newExhibit = {"name": $scope.exhibitName,
-                      "description":$scope.exhibitDescription};
+                      "description":$scope.exhibitDescription,
+                      "token": Authentication.getToken()
+                    };
         Exhibit.save(newExhibit,function(){
             console.log('successfully post exhibit');
             $scope.exhibitName = "";
             $scope.exhibitDescription = "";
             $state.go($state.current, {}, {reload: true});
+        }, function(){
+            console.log('fail to post exhibit')
         });        
     }
 
