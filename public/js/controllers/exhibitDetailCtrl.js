@@ -9,7 +9,9 @@ angular.module('exhibitDetailCtrl',[])
     $scope.putExhibit = function(){
         Exhibit.update({id:$stateParams.id}, $scope.exhibit, function(){
             console.log("Successfully updated");
+            alert('successfully updated exhibit : ' + $scope.exhibit.name);
         });
+
     }
 
     //delete a single exhibit

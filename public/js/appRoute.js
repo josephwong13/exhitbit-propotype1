@@ -13,6 +13,7 @@ angular.module('exhibitRoute', ['ui.router','ngResource'])
             .state('app', {
                 url:'/app',
                         templateUrl : 'views/home.html',
+                        controller : 'userController'
             })
 
             .state('app.exhibits', {

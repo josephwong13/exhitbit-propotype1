@@ -5,21 +5,25 @@ angular.module('authenticate',[])
     var url = "http://localhost:3000/users";
 
     function saveToken(token){
-        $window.localStorage['myToken'] = token;
+        $window.localStorage['mytoken'] = token;
+        $window.localStorage['status'] = true;
     }
 
     function getToken(){
-        return $window.localStorage['myToken'];
+        return $window.localStorage['mytoken'];
     }
 
     function logout(){
-        $window.localStorage.removeItem('myToken');
+        $window.localStorage.removeItem('mytoken');
+        $window.localStorage.removeItem('status');
+        $window.location.href = '/';
     }
 
     function register(user){
         $http.post(url + '/register', user).then(
             function(data){
                 console.log('successfully register');
+                $window.location.href = '/';
             },
             function(err){
                 console.log('Fail to register user');
@@ -31,10 +35,15 @@ angular.module('authenticate',[])
             function(data){
                 console.log("successfully login");
                 saveToken(data.data.token);
+                $window.location.href = '/';
             },
             function(err){
                 console.log('Fail to login user');
             })
+    }
+
+    function getStatus(){
+        return $window.localStorage['status'];
     }
 
 
@@ -43,6 +52,7 @@ angular.module('authenticate',[])
         login: login,
         saveToken: saveToken,
         getToken: getToken,
-        logout: logout
+        logout: logout,
+        getStatus: getStatus
     }
 }])
