@@ -2,7 +2,10 @@ angular.module('authenticate',[])
 
 .factory('Authentication',['$window','$http', function($window, $http){
 
-    var url = "http://localhost:3000/users";
+    var url = "https://exhitbit-propotype1.herokuapp.com/users";
+    //https://exhitbit-propotype1.herokuapp.com/users -- deployment
+    //http://localhost:3000/users --development
+
 
     function saveToken(token){
         $window.localStorage['mytoken'] = token;
