@@ -1,11 +1,14 @@
 angular.module('exhibitCtrl',[])
 
-.controller('exhibitController', ['$scope','Exhibit','$state', function($scope,Exhibit,$state){
+.controller('exhibitController', ['$scope','Exhibit','$state','Authentication', function($scope,Exhibit,$state,Authentication){
 
     //get method on exhibits
     $scope.allExhibits = Exhibit.query(function(){
         console.log('get exhibits successfully');
     })
+
+    //get login status
+    $scope.status = !Authentication.getStatus();
 
     //post method on exhibits
     $scope.exhibitName = "";

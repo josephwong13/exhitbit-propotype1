@@ -5,7 +5,7 @@
 <form ng-submit="postExhibit()">
     <input type="text" class="form-control" placeholder="Name of exhibit" ng-model="exhibitName"><br>
     <input type="text" class="form-control" placeholder="Description of exhibit" ng-model="exhibitDescription"><br>
-    <button class="btn btn-primary" type="submit">Submit</button>
+    <button class="btn btn-primary" type="submit" ng-disabled="status">Submit</button>
 </form>
 
 
@@ -21,7 +21,7 @@
             <p>{{exhibit.description}}</p>
         </div>
         <div class="media-right">
-            <a ng-click="deleteExhibit(exhibit._id)">X</a>
+            <a ng-click="deleteExhibit(exhibit._id)" ng-hide="status">X</a>
         </div>
     </li>
 </ul>

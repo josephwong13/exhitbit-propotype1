@@ -19,6 +19,6 @@
 <form>
     <input type="text" class="form-control" placeholder="Name of exhibit" ng-model="exhibit.name"><br>
     <input type="text" class="form-control" placeholder="Description of exhibit" ng-model="exhibit.description"><br>
-    <button class="btn btn-warning" ng-click="putExhibit()">Update</button>
-    <button class="btn btn-danger" ng-click="deleteExhibit()">Delete</button>
+    <button class="btn btn-warning" ng-click="putExhibit()" ng-disabled="status">Update</button>
+    <button class="btn btn-danger" ng-click="deleteExhibit()" ng-disabled="status">Delete</button>
 </form>

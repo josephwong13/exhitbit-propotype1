@@ -12,6 +12,26 @@ router.get('/', function(req, res, next) {
     })
 });
 
+//get single user
+router.get('/:user_id',function(req,res,next){
+    User.findById(req.params.user_id, function(err,user){
+        if(err) return next(err);
+        if(user == null){
+            res.json({message: 'No user found'});
+            return next(err);
+        }
+        res.json(user);
+    })
+})
+
+//delete user
+router.delete('/:user_id', function(req,res,next){
+    User.findByIdAndRemove(req.params.user_id, function(err){
+        if(err) return next(err);
+        res.json({message:'deleted user'});
+    })
+})
+
 //register
 
 router.get('/register', function(req,res){

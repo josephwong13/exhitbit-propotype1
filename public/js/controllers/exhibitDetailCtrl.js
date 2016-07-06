@@ -1,6 +1,9 @@
 angular.module('exhibitDetailCtrl',[])
 
-.controller('exhibitDetailController', ['$scope','Exhibit','$state','$stateParams', function($scope,Exhibit,$state,$stateParams){
+.controller('exhibitDetailController', ['$scope','Exhibit','$state','$stateParams','Authentication', function($scope,Exhibit,$state,$stateParams,Authentication){
+
+    //get login status
+    $scope.status = !Authentication.getStatus();
 
     //get a single exhibit
     $scope.exhibit = Exhibit.get({id:$stateParams.id});
